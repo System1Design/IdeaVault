@@ -53,13 +53,19 @@ const [language, setLanguage] = useState("en-IN");
 
   // Load saved ideas when the app opens
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem("ideavault-ideas");
-      if (saved) setIdeas(JSON.parse(saved));
-    } catch {
-      console.error("Could not load saved ideas");
-    }
-    setLoaded(true);
+    const loadIdeas = () => {
+      try {
+        const saved = localStorage.getItem("ideavault-ideas");
+        if (saved) {
+          setIdeas(JSON.parse(saved));
+        }
+      } catch {
+        console.error("Could not load saved ideas");
+      }
+      setLoaded(true);
+    };
+
+    queueMicrotask(loadIdeas);
   }, []);
 
   // Save ideas whenever they change

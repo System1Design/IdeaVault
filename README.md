@@ -4,7 +4,7 @@
 
 IdeaVault is a web application designed to help users capture and organize their spontaneous ideas. The goal is to make sure that no creative thought gets lost. Users can write down their ideas, save them, and access them whenever needed.
 
-The application is currently under development. The initial dashboard and basic idea management functionality have been implemented.
+The application is currently under development. The initial dashboard, basic idea management functionality, and Docker integration have been implemented.
 
 ## ✨ Features Implemented
 
@@ -15,6 +15,8 @@ The application is currently under development. The initial dashboard and basic 
 - **Search Ideas:** Search saved ideas using keywords.
 - **Delete Ideas:** Remove ideas that are no longer needed.
 - **Responsive UI:** Interface designed using Tailwind CSS.
+- **Docker Integration:** Application containerized using Docker with a multi-stage production build.
+- **Standalone Production Build:** Optimized Next.js standalone output configured for Docker deployment.
 
 ## 🛠️ Tech Stack
 
@@ -25,11 +27,17 @@ The application is currently under development. The initial dashboard and basic 
 | TypeScript | Type-safe development |
 | Tailwind CSS | Styling and UI design |
 | LocalStorage | Browser-based data persistence |
+| Docker | Application containerization |
+| Node.js | JavaScript runtime |
+| Git & GitHub | Version control and collaboration |
 
 ## 📁 Project Structure
 
 ```text
 ideavault/
+│
+├── .github/
+│   └── workflows/       # GitHub Actions (planned)
 │
 ├── app/
 │   ├── favicon.ico
@@ -39,14 +47,13 @@ ideavault/
 │
 ├── public/
 │
-├── node_modules/
-│
+├── .dockerignore
 ├── .gitignore
+├── Dockerfile
 ├── eslint.config.mjs
 ├── next.config.ts
 ├── package.json
 ├── package-lock.json
-├── postcss.config.mjs
 ├── README.md
 └── tsconfig.json
 ```
@@ -62,6 +69,7 @@ Make sure you have installed:
 - Node.js (20.9 or later)
 - npm
 - Git
+- Docker Desktop (for containerized execution)
 - VS Code (recommended)
 
 ### 1. Clone the Repository
@@ -73,7 +81,7 @@ git clone https://github.com/System1Design/IdeaVault.git
 ### 2. Navigate to the Project Directory
 
 ```bash
-cd ideavault
+cd IdeaVault
 ```
 
 ### 3. Install Dependencies
@@ -98,6 +106,47 @@ http://localhost:3000
 
 The IdeaVault application should now be running locally.
 
+## 🐳 Docker Setup
+
+IdeaVault is configured to run inside a Docker container using a multi-stage production build.
+
+### 1. Build Docker Image
+
+```bash
+docker build -t ideavault .
+```
+
+### 2. Run Docker Container
+
+```bash
+docker run -d --name ideavault-container -p 3000:3000 ideavault
+```
+
+### 3. Check Running Container
+
+```bash
+docker ps
+```
+
+### 4. View Container Logs
+
+```bash
+docker logs ideavault-container
+```
+
+### 5. Stop Container
+
+```bash
+docker stop ideavault-container
+```
+
+**Docker Verification Status:**
+- Docker image built successfully.
+- Production build completed inside Docker.
+- Container started successfully.
+- Next.js production server reported ready.
+- Port mapping configured: `3000:3000`.
+
 ## 🧩 Current Application Workflow
 
 1. Open the IdeaVault dashboard.
@@ -109,7 +158,7 @@ The IdeaVault application should now be running locally.
 
 ## 🗺️ Upcoming Features
 
-The following features are planned for future development:
+The following features are planned or under development:
 
 - **Voice-Based Idea Capture:** Capture ideas directly through a microphone.
 - **Speech-to-Text:** Convert spoken thoughts into text.
@@ -122,9 +171,8 @@ The following features are planned for future development:
   - Category
   - Next Steps
 - **Edit Ideas:** Modify previously saved ideas.
-- **Docker Integration:** Containerize the application.
-- **CI/CD Pipeline:** Automate testing and builds using GitHub Actions.
-- **Deployment:** Deploy the application on Vercel.
+- **GitHub Actions CI/CD:** Automate linting, production builds, and Docker image builds.
+- **Vercel Deployment:** Deploy the application online.
 
 ## 🏗️ Development Status
 
@@ -133,15 +181,22 @@ The following features are planned for future development:
 | Next.js Project Setup | ✅ Completed |
 | Basic Dashboard UI | ✅ Completed |
 | Manual Idea Capture | ✅ Completed |
-| Save and Display Ideas | ✅ Completed |
+| Save and Display Ideas | ✅ Implemented |
 | LocalStorage Integration | ✅ Implemented |
 | Search Ideas | ✅ Implemented |
 | Delete Ideas | ✅ Implemented |
-| Voice Recognition | ⏳ Planned |
+| ESLint Check | ✅ Passed |
+| TypeScript Check | ✅ Passed |
+| Next.js Production Build | ✅ Passed |
+| Dockerfile | ✅ Completed |
+| .dockerignore | ✅ Completed |
+| Docker Image Build | ✅ Successful |
+| Docker Container Execution | ✅ Successful |
+| Voice Recognition | ⏳ Pending Team Integration |
 | AI Integration | ⏳ Planned |
-| Docker | ⏳ Planned |
-| GitHub Actions CI/CD | ⏳ Planned |
-| Vercel Deployment | ⏳ Planned |
+| Edit Ideas | ⏳ Planned |
+| GitHub Actions CI/CD | ⏳ Pending |
+| Vercel Deployment | ⏳ Pending |
 
 ## 🎯 Project Objective
 
